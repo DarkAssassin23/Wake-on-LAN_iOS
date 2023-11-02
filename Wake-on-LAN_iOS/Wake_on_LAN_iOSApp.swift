@@ -2,7 +2,7 @@
 //  Wake_on_LAN_iOSApp.swift
 //  Wake-on-LAN_iOS
 //
-//  Created by Will  Jones on 11/1/23.
+//  Created by DarkAssassin23 on 11/1/23.
 //
 
 import SwiftUI

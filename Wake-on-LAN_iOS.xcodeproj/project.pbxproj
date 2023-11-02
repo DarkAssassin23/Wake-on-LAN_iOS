@@ -13,9 +13,13 @@
 		43CADB562AF28DC3007083C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43CADB552AF28DC3007083C5 /* Preview Assets.xcassets */; };
 		43CADB582AF28DC3007083C5 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CADB572AF28DC3007083C5 /* Persistence.swift */; };
 		43CADB5B2AF28DC3007083C5 /* Wake_on_LAN_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43CADB592AF28DC3007083C5 /* Wake_on_LAN_iOS.xcdatamodeld */; };
+		43CADB642AF2C8C0007083C5 /* AddNewDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CADB632AF2C8C0007083C5 /* AddNewDeviceView.swift */; };
+		43CADB662AF2CEA0007083C5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CADB652AF2CEA0007083C5 /* Utils.swift */; };
+		43CADB682AF324B7007083C5 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CADB672AF324B7007083C5 /* Networking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4397755E2AF3535A0026CEF8 /* Wake-on-LAN-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Wake-on-LAN-iOS-Info.plist"; sourceTree = SOURCE_ROOT; };
 		43CADB4B2AF28DC0007083C5 /* Wake-on-LAN_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wake-on-LAN_iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CADB4E2AF28DC0007083C5 /* Wake_on_LAN_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wake_on_LAN_iOSApp.swift; sourceTree = "<group>"; };
 		43CADB502AF28DC0007083C5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -23,6 +27,9 @@
 		43CADB552AF28DC3007083C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		43CADB572AF28DC3007083C5 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		43CADB5A2AF28DC3007083C5 /* Wake_on_LAN_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Wake_on_LAN_iOS.xcdatamodel; sourceTree = "<group>"; };
+		43CADB632AF2C8C0007083C5 /* AddNewDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewDeviceView.swift; sourceTree = "<group>"; };
+		43CADB652AF2CEA0007083C5 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		43CADB672AF324B7007083C5 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,10 +62,11 @@
 		43CADB4D2AF28DC0007083C5 /* Wake-on-LAN_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				4397755E2AF3535A0026CEF8 /* Wake-on-LAN-iOS-Info.plist */,
+				43CADB622AF296C9007083C5 /* Views */,
+				43CADB612AF296B3007083C5 /* App_Utilities */,
 				43CADB4E2AF28DC0007083C5 /* Wake_on_LAN_iOSApp.swift */,
-				43CADB502AF28DC0007083C5 /* ContentView.swift */,
 				43CADB522AF28DC3007083C5 /* Assets.xcassets */,
-				43CADB572AF28DC3007083C5 /* Persistence.swift */,
 				43CADB592AF28DC3007083C5 /* Wake_on_LAN_iOS.xcdatamodeld */,
 				43CADB542AF28DC3007083C5 /* Preview Content */,
 			);
@@ -71,6 +79,25 @@
 				43CADB552AF28DC3007083C5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		43CADB612AF296B3007083C5 /* App_Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				43CADB572AF28DC3007083C5 /* Persistence.swift */,
+				43CADB652AF2CEA0007083C5 /* Utils.swift */,
+				43CADB672AF324B7007083C5 /* Networking.swift */,
+			);
+			path = App_Utilities;
+			sourceTree = "<group>";
+		};
+		43CADB622AF296C9007083C5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				43CADB502AF28DC0007083C5 /* ContentView.swift */,
+				43CADB632AF2C8C0007083C5 /* AddNewDeviceView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,6 +174,9 @@
 				43CADB582AF28DC3007083C5 /* Persistence.swift in Sources */,
 				43CADB512AF28DC0007083C5 /* ContentView.swift in Sources */,
 				43CADB4F2AF28DC0007083C5 /* Wake_on_LAN_iOSApp.swift in Sources */,
+				43CADB642AF2C8C0007083C5 /* AddNewDeviceView.swift in Sources */,
+				43CADB662AF2CEA0007083C5 /* Utils.swift in Sources */,
+				43CADB682AF324B7007083C5 /* Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +235,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -262,7 +292,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -283,11 +313,15 @@
 				DEVELOPMENT_TEAM = ZQTE6J8KSE;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Wake-on-LAN-iOS-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Wake-on-LAN";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,11 +346,15 @@
 				DEVELOPMENT_TEAM = ZQTE6J8KSE;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Wake-on-LAN-iOS-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Wake-on-LAN";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

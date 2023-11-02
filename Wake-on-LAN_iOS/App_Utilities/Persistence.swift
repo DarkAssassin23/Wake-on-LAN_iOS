@@ -2,7 +2,7 @@
 //  Persistence.swift
 //  Wake-on-LAN_iOS
 //
-//  Created by Will  Jones on 11/1/23.
+//  Created by DarkAssassin23 on 11/1/23.
 //
 
 import CoreData
@@ -13,9 +13,9 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
+        for x in 0..<10 {
             let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            newItem.name = "Test\(x)"
         }
         do {
             try viewContext.save()
