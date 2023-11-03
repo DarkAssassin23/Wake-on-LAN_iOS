@@ -19,7 +19,7 @@ import SwiftUI
 func generateMagicPacket(mac: String) -> String
 {
     let preamble = "ff"
-    let strippedMac = /*mac.replacingOccurrences(of: ":", with: "")*/getMac(mac: mac)
+    let strippedMac = getMac(mac: mac)
     let preambleLen = 6
     let reps:Int = 16 + preambleLen
     var magicPacket:String = ""
