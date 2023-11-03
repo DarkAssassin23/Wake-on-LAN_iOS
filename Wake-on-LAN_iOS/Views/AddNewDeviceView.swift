@@ -131,10 +131,6 @@ struct AddNewDeviceView: View {
     }
 }
 
-//struct AddNewDeviceView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let b = Binding<Bool>(get: {1 == 1})
-//        AddNewDeviceView(isPresented: b)
-//            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//    }
-//}
+#Preview {
+    AddNewDeviceView(isPresented: .constant(true)).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+}
