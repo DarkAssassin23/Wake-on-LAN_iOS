@@ -9,6 +9,22 @@ import Foundation
 import SwiftUI
 import CoreData
 
+enum AddDeviceStatusCode
+{
+    case success
+    case noName
+    case badMac
+    case invalidIP
+    case failedSave
+    case unknown
+}
+
+enum SaveType
+{
+    case update
+    case add
+}
+
 extension Int
 {
     static func parse(from string: String) -> Int?
@@ -128,6 +144,7 @@ func addToCoreData(name: String, mac: String, ip: String, context: NSManagedObje
     temp.ip = ip
     temp.name = name
     temp.macaddress = mac
+    temp.id = UUID()
 
     do
     {
@@ -139,4 +156,34 @@ func addToCoreData(name: String, mac: String, ip: String, context: NSManagedObje
         return false
     }
     return true
+}
+
+/// Update an existing entry in CoreData
+/// - Parameters:
+///   - item: The device to update
+///   - data: All of the current devices
+///   - context: NSManagedObjectContext to allow the CoreData to be written
+/// - Returns: If the new entry was updated successfuly
+func updateCoreData(item: Item, data: FetchedResults<Item>, context: NSManagedObjectContext) -> Bool
+{
+    for i in data
+    {
+        if(item.id == i.id)
+        {
+            i.name = item.name
+            i.macaddress = item.macaddress
+            i.ip = item.ip
+            do
+            {
+                try context.save()
+            }
+            catch let error
+            {
+                print(error)
+                return false
+            }
+            return true
+        }
+    }
+    return false
 }

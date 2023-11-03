@@ -7,16 +7,6 @@
 
 import SwiftUI
 
-enum AddDeviceStatusCode
-{
-    case success
-    case noName
-    case badMac
-    case invalidIP
-    case failedSave
-    case unknown
-}
-
 struct AddNewDeviceView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Binding var isPresented: Bool

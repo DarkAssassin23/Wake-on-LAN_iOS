@@ -98,16 +98,20 @@ class Network : ObservableObject
     
     /// Sends data to the server
     /// - Parameter mac: The MAC Address of the device to send the Wake-on-LAN packet to
-    func send(mac: String)
+    func send(mac: String) -> Bool
     {
+        var success = true
         let data = Data(generateMagicPacket(mac: mac).hexToBytes)
         self.connection?.send(content: data, completion: .contentProcessed({ sendError in
             if let error = sendError {
                 NSLog("Unable to process and send the data: \(error)")
+                success = false
             } else {
                 NSLog("Data has been sent")
+                success = true
                 }
             }
         ))
+        return success
     }
 }

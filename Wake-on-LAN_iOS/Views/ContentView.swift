@@ -23,24 +23,7 @@ struct ContentView: View {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        
-                        Text("\(item.name!): \(item.macaddress!)")
-                        Button(action: {
-                            let network = Network()
-                            network.connect(host: item.ip!)
-                            network.send(mac: item.macaddress!)
-                        })
-                        {
-                            Text("Send WOL Packet")
-                            Image(systemName: "power")
-                        }
-                        // make the button pretty
-                        .padding(10)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-
-                        
+                        CurrentDeviceView(item: item)
                     } label: {
                         Text(item.name!)
                     }

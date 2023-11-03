@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		439775622AF51DE10026CEF8 /* CurrentDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439775612AF51DE10026CEF8 /* CurrentDeviceView.swift */; };
 		43CADB4F2AF28DC0007083C5 /* Wake_on_LAN_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CADB4E2AF28DC0007083C5 /* Wake_on_LAN_iOSApp.swift */; };
 		43CADB512AF28DC0007083C5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CADB502AF28DC0007083C5 /* ContentView.swift */; };
 		43CADB532AF28DC3007083C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43CADB522AF28DC3007083C5 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		4397755E2AF3535A0026CEF8 /* Wake-on-LAN-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Wake-on-LAN-iOS-Info.plist"; sourceTree = SOURCE_ROOT; };
+		439775612AF51DE10026CEF8 /* CurrentDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDeviceView.swift; sourceTree = "<group>"; };
 		43CADB4B2AF28DC0007083C5 /* Wake-on-LAN_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wake-on-LAN_iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CADB4E2AF28DC0007083C5 /* Wake_on_LAN_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wake_on_LAN_iOSApp.swift; sourceTree = "<group>"; };
 		43CADB502AF28DC0007083C5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			children = (
 				43CADB502AF28DC0007083C5 /* ContentView.swift */,
 				43CADB632AF2C8C0007083C5 /* AddNewDeviceView.swift */,
+				439775612AF51DE10026CEF8 /* CurrentDeviceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				439775622AF51DE10026CEF8 /* CurrentDeviceView.swift in Sources */,
 				43CADB5B2AF28DC3007083C5 /* Wake_on_LAN_iOS.xcdatamodeld in Sources */,
 				43CADB582AF28DC3007083C5 /* Persistence.swift in Sources */,
 				43CADB512AF28DC0007083C5 /* ContentView.swift in Sources */,
