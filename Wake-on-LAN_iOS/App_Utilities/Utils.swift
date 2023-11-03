@@ -103,7 +103,7 @@ func isValidIP(ip: String) -> Bool
     {
         if let num = Int.parse(from: octet)
         {
-            if(num < UInt8.min || num >= UInt8.max)
+            if(num < UInt8.min || num > UInt8.max)
             {
                 return false
             }

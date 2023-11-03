@@ -44,11 +44,14 @@ func generateMagicPacket(mac: String) -> String
 /// into the connect function
 class Network : ObservableObject
 {
+    private var group:NWConnectionGroup?
     private var connection: NWConnection?
     private var port:NWEndpoint.Port
+    private var host:NWEndpoint.Host
     /// Initialization constructor for the Network object
     init() {
         port = NWEndpoint.Port("9")!
+        host = NWEndpoint.Host("255.255.255.255")
     }
     
     
@@ -59,6 +62,14 @@ class Network : ObservableObject
     /// I'm requiring the IP
     func connect(host: String)
     {
+//        guard let mulitcast = try? NWMulticastGroup(for: [.hostPort(host: self.host, port: self.port)])
+//        else { fatalError() }
+//        self.group = NWConnectionGroup(with: mulitcast, using: .udp)
+//        self.group?.stateUpdateHandler = { (newState) in
+//            print("Group entered state \(String(describing: newState))")
+//        }
+//        self.group?.start(queue: .main)
+        
         self.connection = NWConnection(host: NWEndpoint.Host(host), port: port, using: .udp)
         self.connection?.stateUpdateHandler = { (newState) in
             switch (newState) {
@@ -107,6 +118,9 @@ class Network : ObservableObject
     func send(mac: String)
     {
         let data = Data(generateMagicPacket(mac: mac).hexToBytes)
+//        self.group?.send(content: data) { error in (error)
+//            print("Send complete with error \(String(describing: error))")
+//        }
         self.connection?.send(content: data, completion: .contentProcessed({ sendError in
             if let error = sendError {
                 NSLog("Unable to process and send the data: \(error)")
