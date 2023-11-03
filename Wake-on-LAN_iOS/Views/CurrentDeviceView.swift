@@ -26,91 +26,94 @@ struct CurrentDeviceView: View {
     @State private var network:Network = Network()
     
     var body: some View {
-        VStack()
+        VStack
         {
-            Text("Current Device")
-                .font(.largeTitle)
-            Spacer()
-            Grid(alignment:.leading)
+            VStack()
             {
-                GridRow
+                Text("Current Device: \(item.name!)")
+                    .font(.largeTitle)
+                Spacer()
+                Grid(alignment:.leading)
                 {
-                    Text("Name:")
-                    TextField("Server", text: $name, prompt: Text(item.name!))
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .border(Color.blue)
-                        .keyboardType(.default)
+                    GridRow
+                    {
+                        Text("Name:")
+                        TextField("Server", text: $name, prompt: Text(item.name!))
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .border(Color.blue)
+                            .keyboardType(.default)
+                        
+                    }
+                    .padding(.horizontal)
+                    GridRow
+                    {
+                        Text("MAC Address:")
+                        TextField("MAC Address", text: $mac, prompt: Text(item.macaddress!))
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .border(Color.blue)
+                            .keyboardType(.default)
+                            .disableAutocorrection(true)
+                    }
+                    .padding(.horizontal)
+                    GridRow
+                    {
+                        Text("IP Address:")
+                        TextField("IP Address",text: $ip, prompt: Text(item.ip!))
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .border(Color.blue)
+                            .keyboardType(.decimalPad)
+                    }
+                    .padding(.horizontal)
                     
                 }
-                .padding(.horizontal)
-                GridRow
+                .padding()
+                Button(action: updateDevice)
                 {
-                    Text("MAC Address:")
-                    TextField("MAC Address", text: $mac, prompt: Text(item.macaddress!))
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .border(Color.blue)
-                        .keyboardType(.default)
-                        .disableAutocorrection(true)
-                }
-                .padding(.horizontal)
-                GridRow
+                    Text("Update")
+                }.alert(isPresented: $showingAlert)
                 {
-                    Text("IP Address:")
-                    TextField("IP Address",text: $ip, prompt: Text(item.ip!))
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .border(Color.blue)
-                        .keyboardType(.decimalPad)
+                    switch alertMessageType
+                    {
+                    case AddDeviceStatusCode.success:
+                        return Alert(title: Text("Success"), message: Text("Your device was updated successfully"),dismissButton: .default(Text("ok")))
+                    case AddDeviceStatusCode.noName:
+                        return Alert(title: Text("Nothing to do"),message: Text("There were no changes made"), dismissButton: .default(Text("ok")))
+                    case AddDeviceStatusCode.badMac:
+                        return Alert(title: Text("Failed update the device"),message: Text("The MAC Address for the device is invalid"), dismissButton: .default(Text("ok")))
+                    case AddDeviceStatusCode.invalidIP:
+                        return Alert(title: Text("Failed update the device"),message: Text("The IP Address for the device is invalid"), dismissButton: .default(Text("ok")))
+                    case AddDeviceStatusCode.failedSave:
+                        return Alert(title: Text("Failed to update the device"),message: Text("An error occured trying to save your updates to CoreData"), dismissButton: .default(Text("ok")))
+                    default:
+                        return Alert(title: Text("Error"), message: Text("An unknown error has occured"),dismissButton: .default(Text("ok")))
+                    }
                 }
-                .padding(.horizontal)
-
+                Spacer()
             }
-            .padding()
-            Button(action: updateDevice)
+            .onAppear(){network.connect(host: item.ip!)}
+            Button(action: {
+                network.send(mac: item.macaddress!)
+                alertSend = true
+            })
             {
-                Text("Update")
-            }.alert(isPresented: $showingAlert)
-            {
-                switch alertMessageType
-                {
-                case AddDeviceStatusCode.success:
-                    return Alert(title: Text("Success"), message: Text("Your device was updated successfully"),dismissButton: .default(Text("ok")))
-                case AddDeviceStatusCode.noName:
-                    return Alert(title: Text("Nothing to do"),message: Text("There were no changes made"), dismissButton: .default(Text("ok")))
-                case AddDeviceStatusCode.badMac:
-                    return Alert(title: Text("Failed update the device"),message: Text("The MAC Address for the device is invalid"), dismissButton: .default(Text("ok")))
-                case AddDeviceStatusCode.invalidIP:
-                    return Alert(title: Text("Failed update the device"),message: Text("The IP Address for the device is invalid"), dismissButton: .default(Text("ok")))
-                case AddDeviceStatusCode.failedSave:
-                    return Alert(title: Text("Failed to update the device"),message: Text("An error occured trying to save your updates to CoreData"), dismissButton: .default(Text("ok")))
-                default:
-                    return Alert(title: Text("Error"), message: Text("An unknown error has occured"),dismissButton: .default(Text("ok")))
-                }
+                Text("Send WOL Packet")
+                Image(systemName: "power")
             }
-            Spacer()
+            // make the button pretty
+            .padding(10)
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .alert(isPresented: $alertSend)
+            {
+                if(sendSuccess)
+                {
+                    return Alert(title: Text("Success"), message: Text("The Wake-on-LAN Packet was sent successfully"), dismissButton: .default(Text("ok")))
+                }
+                return Alert(title: Text("Failure"), message: Text("The Wake-on-LAN Packet failed to send"), dismissButton: .default(Text("ok")))
+            }
         }.onTapGesture {
             hideKeyboard()
-        }
-        .onAppear(){network.connect(host: item.ip!)}
-        Button(action: {
-            network.send(mac: item.macaddress!)
-            alertSend = true
-        })
-        {
-            Text("Send WOL Packet")
-            Image(systemName: "power")
-        }
-        // make the button pretty
-        .padding(10)
-        .background(Color.blue)
-        .foregroundColor(.white)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-        .alert(isPresented: $alertSend)
-        {
-            if(sendSuccess)
-            {
-                return Alert(title: Text("Success"), message: Text("The Wake-on-LAN Packet was sent successfully"), dismissButton: .default(Text("ok")))
-            }
-            return Alert(title: Text("Failure"), message: Text("The Wake-on-LAN Packet failed to send"), dismissButton: .default(Text("ok")))
         }
     }
     private func updateDevice()
