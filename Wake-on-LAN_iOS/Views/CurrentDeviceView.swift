@@ -14,7 +14,6 @@ struct CurrentDeviceView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.name, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
-    let network = Network()
     
     @State var item:Item
     @State private var name:String = ""
@@ -24,6 +23,7 @@ struct CurrentDeviceView: View {
     @State private var sendSuccess:Bool = true
     @State private var showingAlert:Bool = false
     @State private var alertMessageType = AddDeviceStatusCode.unknown
+    @State private var network:Network = Network()
     
     var body: some View {
         VStack()
@@ -92,7 +92,7 @@ struct CurrentDeviceView: View {
         }
         .onAppear(){network.connect(host: item.ip!)}
         Button(action: {
-            sendSuccess = network.send(mac: item.macaddress!)
+            network.send(mac: item.macaddress!)
             alertSend = true
         })
         {
@@ -148,16 +148,27 @@ struct CurrentDeviceView: View {
         item.macaddress = mac
         item.ip = ip
         let updateSuccess = updateCoreData(item: item, data: items, context: viewContext)
+        clearFields()
         
         if(updateSuccess)
         {
             alertMessageType = AddDeviceStatusCode.success
+            network.stop()
+            let newCon = Network()
+            newCon.connect(host: item.ip!)
+            network = newCon
         }
         else
         {
             alertMessageType = AddDeviceStatusCode.failedSave
         }
         hideKeyboard()
+    }
+    private func clearFields()
+    {
+        name = ""
+        mac = ""
+        ip = ""
     }
 }
 
