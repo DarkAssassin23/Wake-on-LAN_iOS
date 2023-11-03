@@ -60,7 +60,7 @@ func isValidMAC(mac: String) -> Bool
     {
         if let num = Int(octet, radix: 16)
         {
-            if(num < UInt8.min || num >= UInt8.max)
+            if(num < UInt8.min || num > UInt8.max)
             {
                 return false
             }
